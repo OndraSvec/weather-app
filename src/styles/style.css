@@ -10,6 +10,7 @@
 
 :root {
   --main-color: #0c4a6e;
+  --main-color-grad: #0369a1;
   --off-color: #f0f9ff;
   --displayDiv-w: clamp(15rem, 80vw, 40rem);
   --displayDiv-p: calc(var(--displayDiv-w) * 0.05);
@@ -27,7 +28,11 @@ html {
 }
 
 body {
-  background-color: var(--main-color);
+  background: linear-gradient(
+    to bottom,
+    var(--main-color),
+    var(--main-color-grad)
+  );
   flex-grow: 1;
   display: flex;
   justify-content: center;
