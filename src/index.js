@@ -1,3 +1,1 @@
-import getWeatherData from "./weatherAPI";
-
-console.log(getWeatherData());
+import displayH2 from "./modules/UI";
