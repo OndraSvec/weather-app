@@ -143,6 +143,10 @@ function handleUVIndex() {
 }
 
 export default function events() {
+  const form = document.querySelector("form");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault(), handleUserInput();
+  });
   const searchBtn = document.getElementById("searchBtn");
   searchBtn.addEventListener("click", handleUserInput);
 
