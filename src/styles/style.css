@@ -139,6 +139,10 @@ button {
   color: var(--main-color);
 }
 
+.searchResult span {
+  font-weight: 600;
+}
+
 .temperature,
 .windAndUV {
   display: flex;
