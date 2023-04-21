@@ -2,17 +2,32 @@ import getWeatherData from "./weatherAPI";
 
 const searchResDiv = document.querySelector(".searchResult");
 
-async function displayElement(responseData, responseSubData) {
+function appendElement(caption, data, subdata, subsubdata, unit, target) {
+  const DOMElement = document.createElement("p");
+  DOMElement.textContent = `${caption}: ${data[subdata][subsubdata]}${unit}`;
+  const div = document.querySelector(target);
+  div.appendChild(DOMElement);
+}
+
+async function displayElements() {
   try {
     const response = await getWeatherData(getSearchResult());
-
-    const DOMElement = document.createElement("h1");
-    DOMElement.textContent = `Temperature: ${response[responseData][responseSubData]}°C`;
-    const div = document.createElement("div");
-    div.classList.add("hello");
-    div.appendChild(DOMElement);
-    searchResDiv.appendChild(div);
-    console.log(response);
+    appendElement(
+      "Temperature",
+      response,
+      "current",
+      "temp_c",
+      "°C",
+      ".degrees"
+    );
+    appendElement(
+      "Feels like",
+      response,
+      "current",
+      "feelslike_c",
+      "°C",
+      ".feelsLike"
+    );
   } catch (error) {
     searchResDiv.textContent = "Invalid location input";
   }
@@ -35,6 +50,6 @@ export default function events() {
 
   function handleUserInput() {
     showSearchResult();
-    displayElement("current", "temp_c");
+    displayElements();
   }
 }

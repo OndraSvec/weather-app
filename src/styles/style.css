@@ -12,13 +12,14 @@
   --main-color: #0c4a6e;
   --main-color-grad: #0369a1;
   --off-color: #f0f9ff;
-  --displayDiv-w: clamp(15rem, 80vw, 40rem);
+  --displayDiv-w: clamp(15rem, 80vw, 50rem);
   --displayDiv-p: calc(var(--displayDiv-w) * 0.05);
   --displayDiv-bord-rad: calc(var(--displayDiv-w) * 0.03);
   --form-header-el: clamp(2rem, 10vw, 6rem);
   --form-header-gap: calc(var(--form-header-el) * 0.1);
   --form-input-p: calc(var(--displayDiv-p) * 0.25);
   --form-input-fs: calc(var(--form-header-el) * 0.4);
+  --searchRes-fs: calc(var(--form-input-fs) * 0.8);
 }
 
 html {
@@ -123,4 +124,5 @@ button {
   flex-direction: column;
   justify-content: space-between;
   padding: var(--displayDiv-p);
+  font-size: var(--searchRes-fs);
 }
