@@ -128,8 +128,6 @@ async function displayElements() {
   }
 }
 
-function showWeatherIcon() {}
-
 function formatTime() {
   if (locationAndCondition.lastChild) {
     const element = locationAndCondition.lastChild.querySelector("span");
@@ -171,7 +169,6 @@ export default function events() {
   async function handleUserInput() {
     removeDisplayedElements();
     await displayElements();
-    showWeatherIcon();
     formatTime();
     handleUVIndex();
   }
