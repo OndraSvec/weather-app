@@ -13,6 +13,10 @@
   --main-color-grad: #0369a1;
   --off-color: #f0f9ff;
   --error-color: #be185d;
+  --uv-index-low: #a3e635;
+  --uv-index-med: #fcd34d;
+  --uv-index-medHigh: #f59e0b;
+  --uv-index-high: #dc2626;
   --displayDiv-w: clamp(15rem, 80vw, 50rem);
   --displayDiv-p: calc(var(--displayDiv-w) * 0.05);
   --displayDiv-bord-rad: calc(var(--displayDiv-w) * 0.03);

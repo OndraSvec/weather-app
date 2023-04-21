@@ -120,12 +120,35 @@ async function displayElements() {
   }
 }
 
+function handleUVIndex() {
+  if (UV.querySelector("span")) {
+    const UVspan = UV.querySelector("span");
+    const UVIndex = UVspan.textContent;
+    switch (true) {
+      case UVIndex < 3:
+        UVspan.setAttribute("style", "color: var(--uv-index-low);");
+        break;
+      case UVIndex < 6:
+        UVspan.setAttribute("style", "color: var(--uv-index-med);");
+        break;
+      case UVIndex < 8:
+        UVspan.setAttribute("style", "color: var(--uv-index-medHigh);");
+        break;
+      case UVIndex >= 8:
+        UVspan.setAttribute("style", "color: var(--uv-index-high);");
+        break;
+      default:
+    }
+  }
+}
+
 export default function events() {
   const searchBtn = document.getElementById("searchBtn");
   searchBtn.addEventListener("click", handleUserInput);
 
-  function handleUserInput() {
+  async function handleUserInput() {
     removeDisplayedElements();
-    displayElements();
+    await displayElements();
+    handleUVIndex();
   }
 }
