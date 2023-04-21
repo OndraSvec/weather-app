@@ -1,4 +1,5 @@
 import getWeatherData from "./weatherAPI";
+import "../styles/style.css";
 
 const searchResDiv = document.querySelector(".searchResult");
 const degrees = document.querySelector(".degrees");
