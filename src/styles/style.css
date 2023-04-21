@@ -102,6 +102,7 @@ button {
 
 .displayDiv .form-input > .invalid-location {
   color: var(--error-color);
+  font-weight: 600;
 }
 
 .displayDiv .form-header > button {
