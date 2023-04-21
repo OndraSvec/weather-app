@@ -122,7 +122,39 @@ button {
 .displayDiv > .searchResult {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: calc(var(--form-header-gap) * 5);
   padding: var(--displayDiv-p);
   font-size: var(--searchRes-fs);
+  color: var(--main-color);
+}
+
+.temperature,
+.windAndUV {
+  display: flex;
+  justify-content: space-between;
+}
+
+.locationAndCondition,
+.degrees,
+.feelsLike,
+.wind,
+.UV {
+  display: flex;
+  flex-direction: column;
+  gap: var(--form-header-gap);
+}
+
+.locationAndCondition > div,
+.degrees > div,
+.feelsLike > div,
+.wind > div,
+.UV > div {
+  display: flex;
+  justify-content: space-between;
+  gap: calc(var(--form-header-gap) * 2.5);
+}
+
+.UV {
+  display: flex;
+  align-items: center;
 }
