@@ -81,6 +81,7 @@ button {
   padding-inline: calc(var(--form-input-p) * 0.5);
   font-size: var(--form-input-fs);
   color: var(--main-color);
+  text-transform: capitalize;
 }
 
 .displayDiv .form-input > input:focus + label,
@@ -132,7 +133,8 @@ button {
   display: flex;
   flex-direction: column;
   gap: calc(var(--form-header-gap) * 5);
-  padding: var(--displayDiv-p);
+  margin-top: calc(var(--displayDiv-p) * 2.5);
+  padding-inline: calc(var(--displayDiv-p) * 0.3);
   font-size: var(--searchRes-fs);
   color: var(--main-color);
 }
