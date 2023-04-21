@@ -1,6 +1,11 @@
 import getWeatherData from "./weatherAPI";
 
 const searchResDiv = document.querySelector(".searchResult");
+const degrees = document.querySelector(".degrees");
+const feelsLike = document.querySelector(".feelsLike");
+const locationAndCondition = document.querySelector(".locationAndCondition");
+const wind = document.querySelector(".wind");
+const UV = document.querySelector(".UV");
 
 function appendCondition(data, subdata, sub2data, sub3data) {
   const conditionDiv = searchResDiv.querySelector(".locationAndCondition");
@@ -29,20 +34,45 @@ function removeElement(parent) {
   }
 }
 
+function removeDisplayedElements() {
+  [degrees, feelsLike, locationAndCondition, wind, UV].forEach((div) =>
+    removeElement(div)
+  );
+}
+
+export function getSearchResult() {
+  const searchInp = document.getElementById("searchInput");
+  const { value } = searchInp;
+  searchInp.value = "";
+  return value;
+}
+
+function showSearchResult() {
+  searchResDiv.classList.remove("hidden");
+}
+
+function hideSearchResult() {
+  searchResDiv.classList.add("hidden");
+}
+
+function showError() {
+  const searchLabel = document.getElementById("searchLabel");
+  searchLabel.textContent = "enter a valid location";
+  searchLabel.classList.add("invalid-location");
+}
+
+function hideError() {
+  const searchLabel = document.getElementById("searchLabel");
+  searchLabel.textContent = "enter a location";
+  searchLabel.classList.remove("invalid-location");
+}
+
 async function displayElements() {
   try {
+    hideError();
+    showSearchResult();
     const response = await getWeatherData(getSearchResult());
-    const degrees = document.querySelector(".degrees");
-    const feelsLike = document.querySelector(".feelsLike");
-    const locationAndCondition = document.querySelector(
-      ".locationAndCondition"
-    );
-    const wind = document.querySelector(".wind");
-    const UV = document.querySelector(".UV");
 
-    [degrees, feelsLike, locationAndCondition, wind, UV].forEach((div) =>
-      removeElement(div)
-    );
     appendElement(
       "City",
       response,
@@ -81,21 +111,13 @@ async function displayElements() {
     appendElement("Wind speed", response, "current", "wind_kph", "Kph", wind);
     appendElement("Wind direction", response, "current", "wind_dir", "", wind);
     appendElement("UV Index", response, "current", "uv", "", UV);
-    console.log(response);
   } catch (error) {
-    console.log(error);
+    hideSearchResult();
+    showError();
+    [degrees, feelsLike, locationAndCondition, wind, UV].forEach((div) =>
+      removeElement(div)
+    );
   }
-}
-
-export function getSearchResult() {
-  const searchInp = document.getElementById("searchInput");
-  const { value } = searchInp;
-  searchInp.value = "";
-  return value;
-}
-
-function showSearchResult() {
-  searchResDiv.classList.remove("hidden");
 }
 
 export default function events() {
@@ -103,7 +125,7 @@ export default function events() {
   searchBtn.addEventListener("click", handleUserInput);
 
   function handleUserInput() {
-    showSearchResult();
+    removeDisplayedElements();
     displayElements();
   }
 }

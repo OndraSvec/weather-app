@@ -12,6 +12,7 @@
   --main-color: #0c4a6e;
   --main-color-grad: #0369a1;
   --off-color: #f0f9ff;
+  --error-color: #be185d;
   --displayDiv-w: clamp(15rem, 80vw, 50rem);
   --displayDiv-p: calc(var(--displayDiv-w) * 0.05);
   --displayDiv-bord-rad: calc(var(--displayDiv-w) * 0.03);
@@ -92,6 +93,10 @@ button {
   color: var(--main-color);
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+.displayDiv .form-input > .invalid-location {
+  color: var(--error-color);
 }
 
 .displayDiv .form-header > button {
