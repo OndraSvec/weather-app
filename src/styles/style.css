@@ -39,6 +39,7 @@ body {
     var(--main-color),
     var(--main-color-grad)
   );
+  padding: calc(var(--displayDiv-p) * 2);
   flex-grow: 1;
   display: flex;
   justify-content: center;
