@@ -90,6 +90,14 @@ async function displayElements() {
       locationAndCondition
     );
     appendCondition(response, "current", "condition", "text");
+    appendElement(
+      "Time",
+      response,
+      "location",
+      "localtime",
+      "",
+      locationAndCondition
+    );
     appendElement("Temperature", response, "current", "temp_c", "°C", degrees);
     appendElement("Temperature", response, "current", "temp_f", "°F", degrees);
     appendElement(
@@ -111,6 +119,7 @@ async function displayElements() {
     appendElement("Wind speed", response, "current", "wind_kph", "Kph", wind);
     appendElement("Wind direction", response, "current", "wind_dir", "", wind);
     appendElement("UV Index", response, "current", "uv", "", UV);
+    console.log(response);
   } catch (error) {
     hideSearchResult();
     showError();
@@ -142,6 +151,14 @@ function handleUVIndex() {
   }
 }
 
+function formatTime() {
+  if (locationAndCondition.lastChild) {
+    const element = locationAndCondition.lastChild.querySelector("span");
+    const textCon = element.textContent.split(" ")[1];
+    element.textContent = textCon;
+  }
+}
+
 export default function events() {
   const form = document.querySelector("form");
   form.addEventListener("submit", (e) => {
@@ -153,6 +170,7 @@ export default function events() {
   async function handleUserInput() {
     removeDisplayedElements();
     await displayElements();
+    formatTime();
     handleUVIndex();
   }
 }
