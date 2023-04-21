@@ -1,14 +1,40 @@
 import getWeatherData from "./weatherAPI";
-import "../styles/style.css";
 
-export default async function displayH2() {
-  const response = await getWeatherData();
+const searchResDiv = document.querySelector(".searchResult");
 
-  /*
-  const h2 = document.createElement("h2");
-  h2.textContent = response.location.country;
-  const div = document.querySelector(".form-input");
-  div.appendChild(h2);
-  */
+async function displayElement(responseData, responseSubData) {
+  try {
+    const response = await getWeatherData(getSearchResult());
+
+    const DOMElement = document.createElement("h1");
+    DOMElement.textContent = `Temperature: ${response[responseData][responseSubData]}°C`;
+    const div = document.createElement("div");
+    div.classList.add("hello");
+    div.appendChild(DOMElement);
+    searchResDiv.appendChild(div);
+    console.log(response);
+  } catch (error) {
+    searchResDiv.textContent = "Invalid location input";
+  }
 }
-displayH2();
+
+export function getSearchResult() {
+  const searchInp = document.getElementById("searchInput");
+  const { value } = searchInp;
+  searchInp.value = "";
+  return value;
+}
+
+function showSearchResult() {
+  searchResDiv.classList.remove("hidden");
+}
+
+export default function events() {
+  const searchBtn = document.getElementById("searchBtn");
+  searchBtn.addEventListener("click", handleUserInput);
+
+  function handleUserInput() {
+    showSearchResult();
+    displayElement("current", "temp_c");
+  }
+}

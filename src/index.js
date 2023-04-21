@@ -1,1 +1,4 @@
-import displayH2 from "./modules/UI";
+import "./styles/style.css";
+import events from "./modules/UI";
+
+events();

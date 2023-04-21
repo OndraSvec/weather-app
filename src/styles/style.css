@@ -114,8 +114,13 @@ button {
   fill: var(--main-color);
 }
 
-.displayDiv > .searchResult {
+.displayDiv > .searchResult.hidden {
   display: none;
+}
+
+.displayDiv > .searchResult {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
   padding: var(--displayDiv-p);
 }
