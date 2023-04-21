@@ -113,3 +113,9 @@ button {
 .displayDiv .form-header > button > svg {
   fill: var(--main-color);
 }
+
+.displayDiv > .searchResult {
+  display: none;
+  justify-content: space-between;
+  padding: var(--displayDiv-p);
+}
