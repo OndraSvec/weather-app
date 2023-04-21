@@ -119,13 +119,22 @@ async function displayElements() {
     appendElement("Wind speed", response, "current", "wind_kph", "Kph", wind);
     appendElement("Wind direction", response, "current", "wind_dir", "", wind);
     appendElement("UV Index", response, "current", "uv", "", UV);
-    console.log(response);
   } catch (error) {
     hideSearchResult();
     showError();
     [degrees, feelsLike, locationAndCondition, wind, UV].forEach((div) =>
       removeElement(div)
     );
+  }
+}
+
+function showWeatherIcon() {}
+
+function formatTime() {
+  if (locationAndCondition.lastChild) {
+    const element = locationAndCondition.lastChild.querySelector("span");
+    const textCon = element.textContent.split(" ")[1];
+    element.textContent = textCon;
   }
 }
 
@@ -151,14 +160,6 @@ function handleUVIndex() {
   }
 }
 
-function formatTime() {
-  if (locationAndCondition.lastChild) {
-    const element = locationAndCondition.lastChild.querySelector("span");
-    const textCon = element.textContent.split(" ")[1];
-    element.textContent = textCon;
-  }
-}
-
 export default function events() {
   const form = document.querySelector("form");
   form.addEventListener("submit", (e) => {
@@ -170,6 +171,7 @@ export default function events() {
   async function handleUserInput() {
     removeDisplayedElements();
     await displayElements();
+    showWeatherIcon();
     formatTime();
     handleUVIndex();
   }
